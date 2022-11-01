@@ -5,7 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/app")
@@ -27,5 +31,24 @@ public class IndexController {
         model.addAttribute("contenido", "Perfil del Usuario: ".concat(usuario.getNombre()).concat(" ".concat(usuario.getApellido())));
        model.addAttribute("error", "El usuario no tiene correo");
         return "perfil";
+    }
+    @GetMapping("/listar")
+    public String listar(Model model){
+
+        model.addAttribute("titulo", "Listado de usuarios");
+
+
+        return "listar";
+    }
+    @ModelAttribute("usuarios")
+    public List<Usuario> poblarUsuarios(){
+        List<Usuario> usuarios = new ArrayList<Usuario>();
+        usuarios.add(new Usuario("Hazzim", "Escarcega", "mail@mail.com"));
+        usuarios.add(new Usuario("Alan", "Escarcega", "mail@mail.com"));
+        usuarios.add(new Usuario("David", "Escarcega", "mail@mail.com"));
+        usuarios.add(new Usuario("Ana", "Ramirez", "mail@mail.com"));
+
+
+        return usuarios;
     }
 }

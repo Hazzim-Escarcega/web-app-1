@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${titulo}"></title>
+</head>
+<body>
+<div>
+  <h1 th:text="${titulo}"></h1>
+  <div th:if="${usuarios.size() == 0}">No hay usuarios</div>
+  <div th:if="${usuarios.size() > 0}" th:each="usuario: ${usuarios}" th:text="${usuario.nombre}"></div>
+
+</div>
+
+</body>
+</html>
